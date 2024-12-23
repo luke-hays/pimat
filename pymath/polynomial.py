@@ -32,9 +32,10 @@ class Polynomial(object):
     '''
     self.coefficients = _strip_trailing_values(coefficients, 0)
     self.indeterminate = 'x'
+    print('fuck')
 
   def __add__(self, other: list[int]):
-    new_coefficients = [sum(x) for x in zip_longest(self, other, fillvalue=0.)]
+    new_coefficients = [sum(x) for x in zip_longest(self, other, fillvalue=0)]
     return Polynomial(new_coefficients)
 
   def __mul__(self, other: list[int]):
@@ -51,11 +52,7 @@ class Polynomial(object):
     return len(self.coefficients)
   
   def __repr__(self):
-    return ' + '.join([
-        '%s %s^%d' % (a, self.indeterminate, i) 
-        if i > 0 
-        else '%s' % a for i, a in enumerate(self.coefficients)
-      ])
+    return ' + '.join(['%s %s^%d' % (a, self.indeterminate, i) if i > 0 else '%s' % a for i, a in enumerate(self.coefficients)])
   
   def __iter__(self):
     return iter(self.coefficients)
@@ -68,6 +65,9 @@ class Polynomial(object):
 
   def __call__(self, *args):
     return self.evaluate_at(args[0])
+
+  def __eq__(self, other):
+    return self.coefficients == other.coefficients
 
   def evaluate_at(self, x: int):
     '''Evaluate a polynomial at an input point
