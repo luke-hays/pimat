@@ -1,6 +1,6 @@
 import pytest
 from math import ceil
-from pymath.polynomial import Polynomial, interpolate
+from pimat.polynomial import Polynomial, interpolate
 
 interpolation_test_data = [
   ([(1, 1)], [1]),
@@ -8,10 +8,22 @@ interpolation_test_data = [
   ([(1, 1), (2, 4), (7, 9)], [1, 4, 9])
 ]
 
+def test_polynomial_print():
+  assert repr(Polynomial([1, 2, 3])) == '1 + 2 x^1 + 3 x^2'
+
 def test_add_two_polynomials():
   f = Polynomial([1, 2, 3])
   g = Polynomial([-8, 17, 0, 5])
   assert f + g == Polynomial([-7, 19, 3, 5])
+
+def test_subtract_two_polynomials():
+  f = Polynomial([1, 2, 3])
+  g = Polynomial([1, 3, 0])
+  assert f - g == Polynomial([0, -1, 3])
+
+def test_polynomial_negation():
+  f = -Polynomial([1, -2, 3])
+  assert f == Polynomial([-1, 2, -3])
 
 def test_evaluate_at():
   f = Polynomial([1, 2, 3])
