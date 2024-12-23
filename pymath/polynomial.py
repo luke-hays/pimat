@@ -32,7 +32,6 @@ class Polynomial(object):
     '''
     self.coefficients = _strip_trailing_values(coefficients, 0)
     self.indeterminate = 'x'
-    print('fuck')
 
   def __add__(self, other: list[int]):
     new_coefficients = [sum(x) for x in zip_longest(self, other, fillvalue=0)]
@@ -81,6 +80,34 @@ class Polynomial(object):
     
     return result
 
-ZERO_POLYNOMIAL = Polynomial([])
+ZERO_POLYNOMIAL = Polynomial([])  
 
 # Interpolating Polynomial
+def interpolate(points: list[float]):
+  '''Return the unique polynomial of degree at most n passing through the given n+1 points'''
+  def single_term(points: list[float], i: int):
+    '''Return one term of an interpolated polynomial
+    
+    Arguements:
+      - points: a list of (float, float)
+      - i: an integer indexing a specific point
+    '''
+    the_term = Polynomial([1.])
+    xi, yi = points[i]
+
+    for j, p in enumerate(points):
+      if j == i: continue
+      xj = p[0]
+      the_term = the_term * Polynomial([-xj / (xi - xj), 1.0 / (xi - xj)])
+    
+    return the_term * Polynomial([yi])
+
+  if len(points) == 0:
+    raise ValueError('Must provide at least one point')
+  
+  x_values = [p[0] for p in points]
+  if len(set(x_values)) < len(x_values):
+    raise ValueError('Not all x values are distinct')
+  
+  terms = [single_term(points, i) for i in range(0, len(points))]
+  return sum(terms, ZERO_POLYNOMIAL)
