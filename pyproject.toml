@@ -1,26 +1,37 @@
+# Build system configuration
 [build-system]
+# Required packages for building this project
 requires = [
     "setuptools>=61.0",
     "wheel"
 ]
+# Specifies that setuptools is used to build the package
 build-backend = "setuptools.build_meta"
 
+# Core project metadata
 [project]
 name = "pymath"
 version = "0.1.0"
 description = "Library of small math scripts"
 readme = "README.md"
+# External packages required for this project to run
 dependencies = [
-    "grpcio>=1.59.0",
-    "grpcio-tools>=1.59.0"
+    "grpcio>=1.59.0",    # gRPC runtime
+    "grpcio-tools>=1.59.0"  # Tools for generating gRPC code
 ]
 
+# Command-line scripts/tools provided by this package
 [project.scripts]
+# Generates gRPC Python code from protobuf definitions
+# Usage: generate-grpc
 generate-grpc = "scripts.generate:main"
 
+# Package discovery settings
 [tool.setuptools.packages]
+# Automatically find all Python packages in the project
 find = { where = ["."] } 
 
+# pytest configuration
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "-ra -q"
