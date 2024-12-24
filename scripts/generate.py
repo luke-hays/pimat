@@ -1,16 +1,16 @@
 import os
 import subprocess
+import sys
 
 def main():
-    # Ensure generated directory exists
-    os.makedirs("generated", exist_ok=True)
-    
-    # Run protoc compiler
+    # Run protoc compiler using current Python interpreter
     subprocess.run([
-        "python", "-m", "grpc_tools.protoc",
+        sys.executable,
+        "-m",
+        "grpc_tools.protoc",
         "-I./protos",
-        "--python_out=./generated",
-        "--grpc_python_out=./generated",
+        "--python_out=./protos",
+        "--grpc_python_out=./protos",
         "./protos/polynomial.proto"
     ])
 

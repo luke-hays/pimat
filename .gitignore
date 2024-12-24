@@ -60,3 +60,6 @@ pytestdebug.log
 
 # Generated protobuf files
 generated/
+# gRPC generated files
+*_pb2.py
+*_pb2_grpc.py
