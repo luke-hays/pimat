@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package polynomial;
+
+// Service definition
+service PolynomialService {
+  // Interpolate points to create a polynomial
+  rpc Interpolate (InterpolateRequest) returns (InterpolateResponse) {}
+}
+
+// Point represents an x,y coordinate
+message Point {
+  double x = 1;
+  double y = 2;
+}
+
+// Request message containing points to interpolate
+message InterpolateRequest {
+  repeated Point points = 1;
+}
+
+// Response message containing the polynomial coefficients
+message InterpolateResponse {
+  repeated double coefficients = 1;
+} 

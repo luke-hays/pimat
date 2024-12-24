@@ -10,7 +10,13 @@ name = "pymath"
 version = "0.1.0"
 description = "Library of small math scripts"
 readme = "README.md"
-dependencies = []
+dependencies = [
+    "grpcio>=1.59.0",
+    "grpcio-tools>=1.59.0"
+]
+
+[project.scripts]
+generate-grpc = "scripts.generate:main"
 
 [tool.setuptools.packages]
 find = { where = ["."] } 
