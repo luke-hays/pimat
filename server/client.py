@@ -1,7 +1,7 @@
 import grpc
 import logging
-from protos.polynomial_pb2 import Point, InterpolateRequest
-from protos.polynomial_pb2_grpc import PolynomialServiceStub
+from server.protos.polynomial_pb2 import Point, InterpolateRequest
+from server.protos.polynomial_pb2_grpc import PolynomialServiceStub
 
 def run():
     logging.info("Starting client...")

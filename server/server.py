@@ -1,8 +1,8 @@
 import grpc
 from concurrent import futures
 import logging
-from protos.polynomial_pb2 import InterpolateResponse
-from protos.polynomial_pb2_grpc import PolynomialServiceServicer, add_PolynomialServiceServicer_to_server
+from server.protos.polynomial_pb2 import InterpolateResponse
+from server.protos.polynomial_pb2_grpc import PolynomialServiceServicer, add_PolynomialServiceServicer_to_server
 
 class PolynomialService(PolynomialServiceServicer):
     def Interpolate(self, request, context):

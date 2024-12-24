@@ -23,8 +23,8 @@ dependencies = [
 # Command-line scripts/tools provided by this package
 [project.scripts]
 # Generates gRPC Python code from protobuf definitions
-# Usage: generate-grpc
-generate-grpc = "scripts.generate:main"
+# Usage: generate-protoc
+generate-protoc = "scripts.generate_protoc:main"
 
 # Package discovery settings
 [tool.setuptools.packages]

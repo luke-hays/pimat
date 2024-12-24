@@ -1,4 +1,3 @@
-import os
 import subprocess
 import sys
 
@@ -8,10 +7,10 @@ def main():
         sys.executable,
         "-m",
         "grpc_tools.protoc",
-        "-I./protos",
-        "--python_out=./protos",
-        "--grpc_python_out=./protos",
-        "./protos/polynomial.proto"
+        "-I./server/protos",
+        "--python_out=./server/protos",
+        "--grpc_python_out=./server/protos",
+        "./server/protos/polynomial.proto"
     ])
 
 if __name__ == "__main__":
